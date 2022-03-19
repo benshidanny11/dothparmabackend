@@ -1,10 +1,12 @@
 import express from "express";
 import Auth from "./_Auth";
+import Pharmacy from "./_pharmacy";
 
 const api = express();
 
 
 api.use("/api/user", Auth);
+api.use("/api/pharmacy",Pharmacy);
 api.get("/", (req, res) => {
   res.status(200).send({
     status: 200,
