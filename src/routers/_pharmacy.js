@@ -3,6 +3,7 @@ import Validator from "../middleware/_validator";
 import express from "express";
 import Auth from "../middleware/Auth";
 import AccessLevel from "../middleware/user";
+import DataExistsChecks from "../middleware/MedicinePharmacy";
 
 const router = express.Router();
 
@@ -27,5 +28,13 @@ router.delete(
   Pharmacy.deletePharmacy
 );
 router.get("/findall", Pharmacy.findAll);
+router.post(
+  "/addmedtopharma",
+  Auth.verifyToken,
+  AccessLevel[0],
+  DataExistsChecks[0],
+  DataExistsChecks[1],
+  Pharmacy.addMedicineToPharma
+);
 
 export default router;

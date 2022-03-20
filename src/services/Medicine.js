@@ -1,5 +1,6 @@
 import query from "../database/connection/query";
 import { createMedicine, updateMedicine ,findAllMedicines,searchByName,getById,deleteMedicine} from "../database/queries/medicine";
+import {getMedicinesInPharmacy} from "../database/queries/pharmacy";
 import { STATUSES } from "../constants/ResponseStatuses";
 import { MESSAGES } from "../constants/ResponceMessages";
 class Medicine {
@@ -93,6 +94,30 @@ class Medicine {
         message: error.message,
       };
     }
+  }
+  async getMedicinesInPharmacy(phid){
+    try{
+      const medicinesInPharmacy=await query.query(getMedicinesInPharmacy,[phid]);
+      if(medicinesInPharmacy.rows.length>0){
+        return {
+          status:STATUSES.OK,
+          message:MESSAGES.FOUND,
+          data:medicinesInPharmacy.rows
+        }
+      }else {
+        return {
+          status:STATUSES.NO_CONTENT,
+          message:MESSAGES.NOT_CONTENT,
+          data:[]
+        }
+      }
+    }catch(error){
+      return {
+        status:STATUSES.BAD_REQUEST,
+        message:error.message,
+      }
+    }
+   
   }
 }
 

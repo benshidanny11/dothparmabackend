@@ -1,4 +1,3 @@
-import { response } from "express";
 import moment from "moment";
 import { v4 as uuid } from "uuid";
 import { MESSAGES } from "../constants/ResponceMessages";
@@ -122,6 +121,19 @@ class PharmacyController {
           message: error.message,
         });
       });
+  }
+  async addMedicineToPharma(req,res){
+    Pharmacy.addMedicineInPharmacy([req.body.phid,req.body.mid]).then((response)=>{
+     res.status(response.status).send({
+       status:response.status,
+       message:response.message,
+     });
+    }).catch((error)=>{
+      res.status(STATUSES.SERVERERROR).send({
+        status:STATUSES.SERVERERROR,
+        message:error.message,
+      });
+    });
   }
 }
 

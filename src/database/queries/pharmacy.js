@@ -11,5 +11,14 @@ export const searchByName = `SELECT ph_name,ph_email,ph_phone,ph_website,ph_addr
 
 export const deletePharmacy = `DELETE FROM pharmacies WHERE ph_id=$1 RETURNING *`;
 
-export const disactivatePharmacy= `UPDATE pharmacies SET ph_status='0'`;
-export const getByEmailOrPhone= `SELECT ph_name,ph_email,ph_phone,ph_website,ph_address,done_on,user_id FROM pharmacies WHERE ph_email=$1 OR ph_phone=$2 LIMIT 1`;
+export const disactivatePharmacy = `UPDATE pharmacies SET ph_status='0'`;
+export const getByEmailOrPhone = `SELECT ph_name,ph_email,ph_phone,ph_website,ph_address,done_on,user_id FROM pharmacies WHERE ph_email=$1 OR ph_phone=$2 LIMIT 1`;
+export const addMedicineToPharmacy = `INSERT INTO medicines_pharmacies(ph_id,m_id) VALUES($1,$2) RETURNING *`;
+export const getMedicinesInPharmacy = `SELECT ph_name,m_name,m_properties,
+                                      m_desciption,m_image,m_price,m_type FROM medicines_pharmacies 
+                                      INNER JOIN pharmacies ON medicines_pharmacies.ph_id=pharmacies.ph_id 
+                                      INNER JOIN medicines ON medicines_pharmacies.m_id=medicines.m_id WHERE pharmacies.ph_id=$1`;
+export const getpharmaciesByMedicine = `ph_name,ph_email,ph_phone,ph_website,ph_address,m_name,m_properties,
+                                      m_desciption,m_image,m_price,m_type FROM medicines_pharmacies 
+                                      INNER JOIN pharmacies ON medicines_pharmacies.ph_id=pharmacies.ph_id 
+                                      INNER JOIN medicines ON medicines_pharmacies.m_id=medicines.m_id WHERE medicines.m_id=$1`;

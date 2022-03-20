@@ -93,5 +93,19 @@ class MedicineController {
         });
       });
   }
+  async getMedsInPharma(req,res){
+    Medicine.getMedicinesInPharmacy(req.params.phid).then((response)=>{
+    res.status(response.status).send({
+      status:response.status,
+      message:response.message,
+      data:response.data
+    })
+    }).catch((error)=>{
+      res.status(STATUSES.SERVERERROR).send({
+        status: STATUSES.SERVERERROR,
+        message: error.message,
+      });
+    });
+  }
 }
 export default new MedicineController();

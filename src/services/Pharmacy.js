@@ -1,4 +1,4 @@
-import { createPharmacy, deletePharmacy, disactivatePharmacy, getAllPharmacies, updatePharmacy, getOneById, searchByName, getByEmailOrPhone } from '../database/queries/pharmacy';
+import { createPharmacy, deletePharmacy, disactivatePharmacy, getAllPharmacies, updatePharmacy, getOneById, searchByName, getByEmailOrPhone ,addMedicineToPharmacy} from '../database/queries/pharmacy';
 import query from '../database/connection/query';
 import { MESSAGES } from '../constants/ResponceMessages';
 import { STATUSES } from '../constants/ResponseStatuses';
@@ -114,6 +114,28 @@ class Pharmacy {
                 message:error.message,
             } 
         }
+    }
+
+    async addMedicineInPharmacy(data){
+        try{
+         const pharmacyMedicine=await query.query(addMedicineToPharmacy,data);
+         if(pharmacyMedicine.rows.length>0){
+          return {
+              status:STATUSES.CREATED,
+              message:'Medicine added to pharmacy successfully!',
+          }
+         }else{
+           return {
+            status:STATUSES.BAD_REQUEST,
+            message:'Medicine not added to pharmacy!',
+           }  
+         }
+        }catch(error){
+            return {
+                status:STATUSES.SERVERERROR,
+                message:error.message,
+            }
+        } 
     }
 }
 export default new Pharmacy();

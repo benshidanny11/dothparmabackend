@@ -34,5 +34,10 @@ router.put(
     MedicineController.deleteMedicine
   );
 
+  router.get(
+    "/medicinesinpharmacy/:phid",
+    MedicineController.getMedsInPharma
+  );
+
 
 export default router;
