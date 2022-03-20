@@ -41,6 +41,10 @@ const clinic = Joi.string()
 
 const image = Joi.string().min(5).label("Image is required,  it must be a url");
 
+const properties = Joi.string().required().min(3).label("Medicine properties are required, must be atleast 3 letters");
+const decription = Joi.string().required().min(3).label("Medicine decription is required, must be atleast 10 letters");
+const price = Joi.number().min(1).required().label("Medicine price is required");
+const type = Joi.string().min(3).required().label("Medicine type is required");
 schemas.login = Joi.object().keys({
   email,
   password,
@@ -65,6 +69,15 @@ schemas.doctor = Joi.object().keys({
   speciality,
   clinic,
   image,
+});
+
+schemas.medicine=Joi.object().keys({
+  name,
+  properties,
+  decription,
+  image,
+  price,
+  type
 });
 
 export default schemas;
