@@ -43,12 +43,50 @@ class DoctorController {
       req.body.speciality,
       req.body.clinic,
       req.body.image,
-      moment(new Date()),
+      moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
       req.user.u_id,
       req.body.phone,
       req.params.did
     ];
     Doctor.updateDoctor(data).then((response)=>{
+      res.status(response.status).send(
+          {
+          status:response.status,
+          message:response.message,
+          data:response.data
+          }
+      );
+  }).catch((error)=>{
+      res.status(STATUSES.SERVERERROR).send(
+          {
+          status:STATUSES.SERVERERROR,
+          message:error.message,
+          data:null
+          }
+      );
+  });
+  }
+
+  async findAll(req,res){
+    Doctor.getAll().then((response)=>{
+     res.status(response.status).send({
+       status:response.status,
+       message:response.message,
+       data:response.data
+     })
+    }).catch((error)=>{
+      res.status(STATUSES.SERVERERROR).send(
+        {
+        status:STATUSES.SERVERERROR,
+        message:error.message,
+        data:null
+        }
+    );
+    });
+  }
+
+  async deleteDoctor(req,res){
+    Doctor.deleteDoctor(req.params.did).then((response)=>{
       res.status(response.status).send(
           {
           status:response.status,

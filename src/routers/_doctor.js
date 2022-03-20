@@ -22,4 +22,16 @@ router.put(
   DoctorController.updateDoctor
 );
 
+router.get(
+  "/findall",
+  DoctorController.findAll
+);
+router.delete(
+  "/deletedoctor/:did",
+  Auth.verifyToken,
+  AccessLevel[0],
+  DoctorController.deleteDoctor
+);
+
+
 export default router;

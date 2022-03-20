@@ -42,7 +42,7 @@ class Doctor {
   }
   async updateDoctor(data) {
     try {
-        //
+      //
       const doctorRes = await query.query(updateDoctor, data);
       if (doctorRes.rows.length > 0) {
         return {
@@ -53,10 +53,55 @@ class Doctor {
       } else {
         return {
           status: STATUSES.BAD_REQUEST,
-          message: MESSAGES.NOT_UPDATED,
+          message: MESSAGES.NOT_FOUND,
         };
       }
     } catch (error) {
+      return {
+        status: STATUSES.SERVERERROR,
+        message: error.message,
+      };
+    }
+  }
+  async getAll() {
+    try {
+      const doctors = await query.query(getAllDoctors);
+      if (doctors.rows.length > 0) {
+        return {
+          status: STATUSES.OK,
+          message: MESSAGES.FOUND,
+          data: doctors.rows,
+        };
+      } else {
+        return {
+          status: STATUSES.NO_CONTENT,
+          message: MESSAGES.NOT_CONTENT,
+          data: doctors.rows,
+        };
+      }
+    } catch (error) {
+      return {
+        status: STATUSES.SERVERERROR,
+        message: error.message,
+      };
+    }
+  }
+
+  async deleteDoctor(did){
+    try {
+      const deletedRes=await query.query(deleteDoctor,[did]);
+      if(deletedRes.rows.length>0){
+        return {
+          status:STATUSES.OK,
+          message:MESSAGES.DELETED,
+        }
+      }else {
+        return {
+          status:STATUSES.BAD_REQUEST,
+          message:MESSAGES.NOT_FOUND,
+        }
+      }
+    }catch(error){
       return {
         status: STATUSES.SERVERERROR,
         message: error.message,
