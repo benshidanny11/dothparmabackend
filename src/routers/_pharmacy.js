@@ -3,7 +3,7 @@ import Validator from "../middleware/_validator";
 import express from "express";
 import Auth from "../middleware/Auth";
 import AccessLevel from "../middleware/user";
-import DataExistsChecks from "../middleware/MedicinePharmacy";
+import DataExistsChecks from "../middleware/CheckDataExists";
 
 const router = express.Router();
 

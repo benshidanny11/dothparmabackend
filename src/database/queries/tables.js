@@ -16,6 +16,10 @@ export const CreatePatientTable = `CREATE TABLE IF NOT EXISTS patients
     p_email text COLLATE pg_catalog."default",
     p_phonenumber text COLLATE pg_catalog."default",
     p_address text COLLATE pg_catalog."default",
+    p_country text COLLATE pg_catalog."default",
+    p_town text COLLATE pg_catalog."default",
+    p_district text COLLATE pg_catalog."default",
+    p_streetnumber text COLLATE pg_catalog."default",
     p_national_id text COLLATE pg_catalog."default",
     doneon text COLLATE pg_catalog."default",
     CONSTRAINT patient_pkey PRIMARY KEY (p_id)
@@ -79,6 +83,7 @@ export const createOrdersTable = `CREATE TABLE IF NOT EXISTS orders
     patient_id text COLLATE pg_catalog."default",
     o_pharmacy text COLLATE pg_catalog."default",
     o_medicine text COLLATE pg_catalog."default",
+    o_prescription text COLLATE pg_catalog."default",
     o_date text COLLATE pg_catalog."default",
     o_status text COLLATE pg_catalog."default",
     CONSTRAINT orders_pkey PRIMARY KEY (o_id),
