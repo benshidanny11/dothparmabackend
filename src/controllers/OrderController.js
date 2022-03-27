@@ -42,7 +42,6 @@ class OrderController {
           "Medicine order from DotPharma"
         ),
       ]);
-      console.log(emailSent);
     }
   }
 }
