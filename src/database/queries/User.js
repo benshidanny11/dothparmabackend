@@ -1,11 +1,10 @@
 export const getAll = `SELECT userid,names, email, phonenumber, role, password, status
-FROM users where status='1' and role !='HEAD_MASTER' LIMIT 5 OFFSET $1`;
+FROM users where status='1' and role !='HEAD_MASTER' LIMIT 20 OFFSET $1`;
 export const getByEmail = `select u_id, u_name, u_email, u_phone, u_role,u_password,doneon from users where u_email =$1`;
 export const getByRole  = `select userid,names,email,phonenumber,role,password,status from users where role = 'TEACHER' and status = '1'`;
 export const getById = `SELECT userid,names, email, phonenumber, role, password, status
 FROM users where status='1' and userid = $1`;
-export const getTeacherById =` SELECT userid,names, email, phonenumber, role, password, status
-FROM users where status='1' and userid = $1 and role='TEACHER'`;
+export const getByEmailOrPhone = `select u_id, u_name, u_email, u_phone, u_role,u_password,doneon from users where u_email =$1 or u_phone=$2`;
 export const getTotalUsers=`SELECT COUNT(*) as totalUses from users where`;
 
 export const create =`INSERT INTO users(
