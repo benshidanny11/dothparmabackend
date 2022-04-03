@@ -84,7 +84,7 @@ class Pharmacy {
             }else {
                 return {
                     status:STATUSES.BAD_REQUEST,
-                    message:MESSAGES.UNKNOWN_ERROR,
+                    message:MESSAGES.NOT_FOUND,
                 } 
             }
         }catch(error){

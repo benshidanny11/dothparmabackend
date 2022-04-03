@@ -41,10 +41,31 @@ const clinic = Joi.string()
 
 const image = Joi.string().min(5).label("Image is required,  it must be a url");
 
-const properties = Joi.string().required().min(3).label("Medicine properties are required, must be atleast 3 letters");
-const decription = Joi.string().required().min(3).label("Medicine decription is required, must be atleast 10 letters");
-const price = Joi.number().min(1).required().label("Medicine price is required");
+const properties = Joi.string()
+  .required()
+  .min(3)
+  .label("Medicine properties are required, must be atleast 3 letters");
+
+const decription = Joi.string()
+  .required()
+  .min(3)
+  .label("Medicine decription is required, must be atleast 10 letters");
+
+const price = Joi.number()
+  .min(1)
+  .required()
+  .label("Medicine price is required");
+
 const type = Joi.string().min(3).required().label("Medicine type is required");
+
+const country = Joi.string().min(3).required().label("Country is required");
+const town = Joi.string().min(3).required().label("Town is required");
+const street = Joi.string().min(3).required().label("Street number is required");
+const nid = Joi.string().min(16).required().label("National id is required, It must be 16 digits");
+const mid = Joi.string().min(3).required().label("Medicine id is required");
+const phid = Joi.string().min(3).required().label("Pharmacy id is required");
+const district = Joi.string().min(3).required().label("District is required");
+const prescription = Joi.string().min(3).label("Prescription is required");
 schemas.login = Joi.object().keys({
   email,
   password,
@@ -71,13 +92,26 @@ schemas.doctor = Joi.object().keys({
   image,
 });
 
-schemas.medicine=Joi.object().keys({
+schemas.medicine = Joi.object().keys({
   name,
   properties,
   decription,
   image,
   price,
-  type
+  type,
 });
-
+schemas.patient = Joi.object().keys({
+  name,
+  email,
+  phone,
+  address,
+  country,
+  town,
+  street,
+  nid,
+  mid,
+  phid,
+  district,
+  prescription
+});
 export default schemas;
