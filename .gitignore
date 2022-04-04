@@ -2,3 +2,4 @@
 /dist
 .env
 api.json
+/src/dropTables.js

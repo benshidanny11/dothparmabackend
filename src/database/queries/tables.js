@@ -106,7 +106,7 @@ export const createAppointmentTable = `CREATE TABLE IF NOT EXISTS appointments
     a_status text COLLATE pg_catalog."default",
     CONSTRAINT appointments_pkey PRIMARY KEY (a_id),
     CONSTRAINT doctor_fk FOREIGN KEY (doctor_id)
-        REFERENCES doctors (d_id) MATCH SIMPLE
+        REFERENCES doctors (do_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT patient_fk FOREIGN KEY (patient_id)

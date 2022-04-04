@@ -42,16 +42,15 @@ class CREATETABLE {
     this.dropTables = {
       all: async () => {
         await pool.connect();
-        await pool.query(dropUserTable);
         await pool.query(dropPatientsTable);
-        await pool.query(dropDoctorsTable);
-        await pool.query(dropMedicinesTable);
-        await pool.query(dropPharmaciesTable);
-        await pool.query(dropOrdersTbale);
-        await pool.query(dropAppointmentsTable);
-        await pool.query(dropMedicinePharmacieTable);
         await pool.query(dropHealthTable);
-       
+        await pool.query(dropMedicinePharmacieTable);
+        await pool.query(dropAppointmentsTable);
+        await pool.query(dropOrdersTbale);
+        await pool.query(dropPharmaciesTable);
+        await pool.query(dropMedicinesTable);
+        await pool.query(dropDoctorsTable);
+        await pool.query(dropUserTable);
       },
     };
   }
