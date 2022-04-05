@@ -1,4 +1,4 @@
-import query from "../database/connection/query";
+import query from "../database/connection/_query";
 import { createMedicine, updateMedicine ,findAllMedicines,searchByName,getById,deleteMedicine} from "../database/queries/medicine";
 import {getMedicinesInPharmacy} from "../database/queries/pharmacy";
 import { STATUSES } from "../constants/ResponseStatuses";

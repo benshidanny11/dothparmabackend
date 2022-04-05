@@ -1,6 +1,6 @@
 import { MESSAGES } from "../constants/ResponceMessages";
 import { STATUSES } from "../constants/ResponseStatuses";
-import query from "../database/connection/query";
+import query from "../database/connection/_query";
 import {
   createDoctor,
   deleteDoctor,

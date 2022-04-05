@@ -7,12 +7,6 @@ import Order from "./_order";
 
 const api = express();
 
-
-api.use("/api/user", Auth);
-api.use("/api/pharmacy",Pharmacy);
-api.use("/api/doctor",Doctor);
-api.use("/api/medicine",Medicine);
-api.use("/api/orders",Order);
 api.get("/", (req, res) => {
   res.status(200).send({
     status: 200,
@@ -26,5 +20,11 @@ api.use("/", (req, res) => {
       message: "Page not found",
     });
   });
+api.use("/api/user", Auth);
+api.use("/api/pharmacy",Pharmacy);
+api.use("/api/doctor",Doctor);
+api.use("/api/medicine",Medicine);
+api.use("/api/orders",Order);
+
   
 export default api;

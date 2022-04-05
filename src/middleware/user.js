@@ -1,6 +1,6 @@
 import { MESSAGES } from "../constants/ResponceMessages";
 import { STATUSES } from "../constants/ResponseStatuses";
-import db from "../database/connection/query";
+import db from "../database/connection/_query";
 import { getByEmail } from "../database/queries/User";
 
 export default [

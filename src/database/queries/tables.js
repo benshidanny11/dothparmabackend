@@ -142,12 +142,12 @@ export const createHealthTipsTable = `CREATE TABLE IF NOT EXISTS healthtips
 )`;
 
 // query to drop tables
-export const dropUserTable = `DROP TABLE IF EXISTS users`;
-export const dropPatientsTable = `DROP TABLE IF EXISTS patients`;
-export const dropDoctorsTable = `DROP TABLE IF EXISTS doctors`;
-export const dropMedicinesTable = `DROP TABLE IF EXISTS medicines`;
-export const dropPharmaciesTable = `DROP TABLE IF EXISTS pharmacies`;
-export const dropOrdersTbale = `DROP TABLE IF EXISTS orders`;
-export const dropAppointmentsTable = `DROP TABLE IF EXISTS appointments`;
-export const dropMedicinePharmacieTable = `DROP TABLE IF EXISTS medicines_pharmacies`;
-export const dropHealthTable = `DROP TABLE IF EXISTS healthtips`;
+export const dropUserTable = `DROP TABLE IF EXISTS users CASCADE`;
+export const dropPatientsTable = `DROP TABLE IF EXISTS patients CASCADE`;
+export const dropDoctorsTable = `DROP TABLE IF EXISTS doctors CASCADE`;
+export const dropMedicinesTable = `DROP TABLE IF EXISTS medicines CASCADE`;
+export const dropPharmaciesTable = `DROP TABLE IF EXISTS pharmacies CASCADE`;
+export const dropOrdersTbale = `DROP TABLE IF EXISTS orders CASCADE`;
+export const dropAppointmentsTable = `DROP TABLE IF EXISTS appointments CASCADE`;
+export const dropMedicinePharmacieTable = `DROP TABLE IF EXISTS medicines_pharmacies CASCADE`;
+export const dropHealthTable = `DROP TABLE IF EXISTS healthtips CASCADE`;

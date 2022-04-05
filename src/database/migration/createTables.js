@@ -1,6 +1,7 @@
-import TABLES from "./tables";
+import schema from "../schema";
 
-TABLES.createTables["all"]().then(() => {
-  console.log("All table are created successfully.");
-  process.exit();
-});
+schema
+ .execute(
+   schema.db.tables.create.all, 
+   "Created successfully!"
+  );

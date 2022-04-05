@@ -1,5 +1,5 @@
 import { createPharmacy, deletePharmacy, disactivatePharmacy, getAllPharmacies, updatePharmacy, getOneById, searchByName, getByEmailOrPhone ,addMedicineToPharmacy} from '../database/queries/pharmacy';
-import query from '../database/connection/query';
+import query from '../database/connection/_query';
 import { MESSAGES } from '../constants/ResponceMessages';
 import { STATUSES } from '../constants/ResponseStatuses';
 class Pharmacy {

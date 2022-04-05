@@ -1,4 +1,4 @@
-import db from "../database/connection/query";
+import db from "../database/connection/_query";
 import { generateToken } from "../utils/_auth";
 //import Auth from "../middleware/Auth";
 import bcrypt from "bcrypt";

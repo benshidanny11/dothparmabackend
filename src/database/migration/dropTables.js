@@ -1,6 +1,7 @@
-import TABLES from "./tables";
+import schema from "../schema";
 
-TABLES.dropTables["all"]().then(() => {
-   console.log("All table are drop successfully.");
-   process.exit();
-});
+schema
+ .execute(
+   schema.db.tables.drop.all,
+   "Droped successfully!"
+  )

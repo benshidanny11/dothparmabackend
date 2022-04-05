@@ -1,6 +1,6 @@
 import { MESSAGES } from "../constants/ResponceMessages";
 import { STATUSES } from "../constants/ResponseStatuses";
-import db from "../database/connection/query";
+import db from "../database/connection/_query";
 import { getOneById } from "../database/queries/pharmacy";
 import { getById } from "../database/queries/medicine";
 import { getById as getPatientById } from "../database/queries/patient";

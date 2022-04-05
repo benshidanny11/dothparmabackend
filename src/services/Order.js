@@ -1,4 +1,4 @@
-import db from "../database/connection/query";
+import db from "../database/connection/_query";
 import {
   approveOrder,
   createOrder,

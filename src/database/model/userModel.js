@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import moment from 'moment';
-import db from '../connection/query';
+import db from '../connection/_query';
 import {create} from '../queries/User';
 import  {v4 as uuidv4} from 'uuid';
 

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import db from "../database/connection/query";
+import db from "../database/connection/_query";
 import dotenv from "dotenv";
 import { getByEmail, checkExist } from "../database/queries/User";
 import { decodeToken } from "../utils/_auth";
