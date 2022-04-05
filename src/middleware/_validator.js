@@ -3,7 +3,7 @@ import Joi from '@hapi/joi';
 import _ from 'lodash';
 import schemas from './_schemas';
 
-export default schema => (req, res, next) => {
+export default (schema) => (req, res, next) => {
   const data = req.body;
   if (_.has(schemas, schema)) {
     const chosenSchema = _.get(schemas, schema);
@@ -16,14 +16,14 @@ export default schema => (req, res, next) => {
     } else {
       const allErrors = [];
       validationResult.error.details.forEach((errors) => {
-        const findError = allErrors.filter(error => error === errors.context.label);
+        const findError = allErrors.filter((error) => error === errors.context.label);
         if (findError.length === 0) {
           allErrors.push(errors.context.label);
         }
       });
       return res.status(400).send({
         status: 400,
-        error: { message: allErrors },
+        error: {message: allErrors},
       });
     }
   }
