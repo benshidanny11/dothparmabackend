@@ -1,7 +1,7 @@
-import schema from "../schema";
+import schema from '../schema';
 
 schema
- .execute(
-   schema.db.tables.create.all, 
-   "Created successfully!"
-  );
+    .execute(
+        schema.db.tables.create.all,
+        'Created successfully!',
+    );

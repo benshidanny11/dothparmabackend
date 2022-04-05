@@ -3,10 +3,11 @@ import db from '../database/connection/query';
 import {createAppointment} from '../database/queries/appointment';
 import {STATUSES} from '../constants/ResponseStatuses';
 import {MESSAGES} from '../constants/ResponceMessages';
-class Appointment {
-  async createAppointment(data) {
+
+const Appointment = {
+  create: async (data) => {
     try {
-      const createRes=await db.query(createAppointment, data);
+      const createRes = await db.query(createAppointment, data);
       if (createRes.rows.length>0) {
         return {
           status: STATUSES.CREATED,
@@ -26,7 +27,15 @@ class Appointment {
         message: `Error: ${e.message}`,
       };
     }
-  }
-}
+  },
+  update: async () => {
 
-export default new Appointment();
+  },
+  destroy: async () => {
+
+  },
+};
+
+export default Appointment;
+
+

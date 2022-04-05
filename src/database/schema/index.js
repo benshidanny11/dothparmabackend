@@ -9,7 +9,7 @@ export default {
     .then((result) => {
       return result[0].map(({ query, name }, index) => {
          return new Promise((reslove, reject) =>{
-          con.query(query).then((result) =>{
+          con.query(query).then((result) => {
             console.log(`${name} ${message}`); 
             reslove(result)
           }).catch((error) =>{

@@ -1,7 +1,7 @@
-import schema from "../schema";
+import schema from '../schema';
 
 schema
- .execute(
-   schema.db.tables.drop.all,
-   "Droped successfully!"
-  )
+    .execute(
+        schema.db.tables.drop.all,
+        'Droped successfully!',
+    );
