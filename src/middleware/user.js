@@ -1,19 +1,20 @@
-import { MESSAGES } from "../constants/ResponceMessages";
-import { STATUSES } from "../constants/ResponseStatuses";
-import db from "../database/connection/_query";
-import { getByEmail } from "../database/queries/User";
+/* eslint-disable camelcase */
+import { MESSAGES } from '../constants/ResponceMessages';
+import { STATUSES } from '../constants/ResponseStatuses';
+import db from '../database/connection/_query';
+import { getByEmail } from '../database/queries/User';
 
 export default [
-  //Supper user
+  // Supper user
   async (req, res, next) => {
-    let {u_email } = req.user;
+    const { u_email } = req.user;
     db.query(getByEmail, [u_email])
       .then(({ rows }) => {
-        if (rows[0].u_role === "SUPER_ADMIN") {
+        if (rows[0].u_role === 'SUPER_ADMIN') {
           next();
         } else {
           res.status(STATUSES.UNAUTHORIZED).send({
-            status:STATUSES.UNAUTHORIZED,
+            status: STATUSES.UNAUTHORIZED,
             message: MESSAGES.UNAUTHORIZED,
           });
         }
@@ -24,16 +25,16 @@ export default [
         });
       });
   },
-  //check if user exists
+  // check if user exists
   async (req, res, next) => {
-    let {u_email } = req.user;
+    const { u_email } = req.user;
     db.query(getByEmail, [u_email])
       .then(({ rows }) => {
-        if (rows[0].u_role === "SUPER_ADMIN") {
+        if (rows[0].u_role === 'SUPER_ADMIN') {
           next();
         } else {
           res.status(STATUSES.UNAUTHORIZED).send({
-            status:STATUSES.UNAUTHORIZED,
+            status: STATUSES.UNAUTHORIZED,
             message: MESSAGES.UNAUTHORIZED,
           });
         }
@@ -44,5 +45,5 @@ export default [
         });
       });
   },
- 
+
 ];

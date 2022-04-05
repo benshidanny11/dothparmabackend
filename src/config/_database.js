@@ -1,7 +1,8 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
+
 dotenv.config();
 export default {
-  development : {
+  development: {
     host: process.env.SERVER,
     port: process.env.DB_PORT,
     database: process.env.DB,
@@ -12,10 +13,10 @@ export default {
     connectionString: process.env.DATABASE_URL,
     dialect: 'postgres',
     dialectOptions: {
-      "ssl": {"require":true }
+      ssl: { require: true }
     },
     ssl: {
       rejectUnauthorized: false
     }
   }
-}
+};

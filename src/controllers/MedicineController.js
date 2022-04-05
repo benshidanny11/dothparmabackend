@@ -1,10 +1,10 @@
-import Medicine from "../services/Medicine";
-import { v4 as uuid } from "uuid";
-import moment from "moment";
-import { STATUSES } from "../constants/ResponseStatuses";
+import { v4 as uuid } from 'uuid';
+import moment from 'moment';
+import Medicine from '../database/models/Medicine';
+import { STATUSES } from '../constants/ResponseStatuses';
 
-class MedicineController {
-  async createMedicine(req, res) {
+const MedicineController = {
+  createMedicine: async (req, res) => {
     const data = [
       uuid(),
       req.body.name,
@@ -12,12 +12,12 @@ class MedicineController {
       req.body.description,
       req.body.image,
       req.body.price,
-      "1",
+      '1',
       req.body.type,
-      moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+      moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       req.user.u_id,
     ];
-    Medicine.createNew(data)
+    Medicine.create(data)
       .then((response) => {
         res.status(response.status).send({
           status: response.status,
@@ -31,8 +31,8 @@ class MedicineController {
           message: error.message,
         });
       });
-  }
-  async updateMedicine(req, res) {
+  },
+  updateMedicine: async (req, res) => {
     const data = [
       req.body.name,
       req.body.properties,
@@ -40,11 +40,11 @@ class MedicineController {
       req.body.image,
       req.body.price,
       req.body.type,
-      moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+      moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       req.user.u_id,
       req.params.mid,
     ];
-    Medicine.updateMedicine(data)
+    Medicine.update(data)
       .then((response) => {
         res.status(response.status).send({
           status: response.status,
@@ -58,9 +58,9 @@ class MedicineController {
           message: error.message,
         });
       });
-  }
-  async findAll(req, res) {
-    Medicine.getAll()
+  },
+  findAll: async (req, res) => {
+    Medicine.findAll()
       .then((response) => {
         res.status(response.status).send({
           status: response.status,
@@ -74,10 +74,9 @@ class MedicineController {
           message: error.message,
         });
       });
-  }
-
-  async deleteMedicine(req, res) {
-    Medicine.deleteMedicine(req.params.mid)
+  },
+  deleteMedicine: async (req, res) => {
+    Medicine.destroy(req.params.mid)
       .then((response) => {
         res.status(response.status).send({
           status: response.status,
@@ -92,20 +91,21 @@ class MedicineController {
           data: null,
         });
       });
-  }
-  async getMedsInPharma(req,res){
-    Medicine.getMedicinesInPharmacy(req.params.phid).then((response)=>{
-    res.status(response.status).send({
-      status:response.status,
-      message:response.message,
-      data:response.data
-    })
-    }).catch((error)=>{
+  },
+  getMedsInPharma: async (req, res) => {
+    Medicine.getMedicinesInPharmacy(req.params.phid).then((response) => {
+      res.status(response.status).send({
+        status: response.status,
+        message: response.message,
+        data: response.data,
+      });
+    }).catch((error) => {
       res.status(STATUSES.SERVERERROR).send({
         status: STATUSES.SERVERERROR,
         message: error.message,
       });
     });
-  }
-}
-export default new MedicineController();
+  },
+};
+
+export default MedicineController;

@@ -10,7 +10,7 @@
     "db:migrate:reset": "babel-node src/database/migration/dropTables.js",
     "build": "babel src --out-dir dist",
     "start": "npm run build && node dist/App.js",
-    "db:admin": "babel-node src/database/model/userModel.js"
+    "db:seeds": "babel-node src/database/seeds/Users.js"
   },
   "author": "",
   "license": "ISC",
@@ -38,7 +38,8 @@
   },
   "devDependencies": {
     "eslint": "^8.12.0",
-    "eslint-config-google": "^0.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
     "nodemon": "^2.0.15"
   }
 }

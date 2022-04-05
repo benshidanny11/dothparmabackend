@@ -1,11 +1,12 @@
-import moment from "moment";
-import { v4 as uuid } from "uuid";
-import { STATUSES } from "../constants/ResponseStatuses";
-import Order from "../services/Order";
-import { sendEmail } from "../utils/appUtils";
+/* eslint-disable no-unused-vars */
+import moment from 'moment';
+import { v4 as uuid } from 'uuid';
+import { STATUSES } from '../constants/ResponseStatuses';
+import Order from '../database/models/Order';
+import { sendEmail } from '../utils/appUtils';
 
-class OrderController {
-  async createNewOrder(req, res) {
+const OrderController = {
+  createNewOrder: async (req, res) => {
     const patientPayload = [
       uuid(),
       req.body.name,
@@ -17,15 +18,15 @@ class OrderController {
       req.body.district,
       req.body.street,
       req.body.nid,
-      moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+      moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
     ];
     const orderPayload = [
       uuid(),
       req.body.phid,
       req.body.mid,
       req.body.prescription,
-      moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-      "Pending",
+      moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+      'Pending',
     ];
     const response = await Order.createOrder(patientPayload, orderPayload);
     res.status(response.status).send({
@@ -33,17 +34,17 @@ class OrderController {
       message: response.message,
       data: response.data,
     });
-    if(response.data){
+    if (response.data) {
       const [emailSent] = await Promise.all([
         sendEmail(
           response.data.pharmacyEmail,
-          "Dotpharma",
+          'Dotpharma',
           `A patient named ${response.data.p_name} made an order!`,
-          "Medicine order from DotPharma"
+          'Medicine order from DotPharma',
         ),
       ]);
     }
-  }
-}
+  },
+};
 
-export default new OrderController();
+export default OrderController;

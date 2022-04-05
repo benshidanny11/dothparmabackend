@@ -1,22 +1,20 @@
-import jwt from "jsonwebtoken";
-import db from "../database/connection/_query";
-import dotenv from "dotenv";
-import { getByEmail, checkExist } from "../database/queries/User";
-import { decodeToken } from "../utils/_auth";
+/* eslint-disable no-unused-vars */
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import db from '../database/connection/_query';
+import { getByEmail, checkExist } from '../database/queries/User';
+import { decodeToken } from '../utils/_auth';
 
+dotenv.config();
 
-class Auth {
-  constructor() {
-    dotenv.config();
-  }
-
-  async verifyToken(req, res, next) {
+const Auth = {
+  verifyToken: async (req, res, next) => {
     const { token } = req.headers;
     if (!token) {
       return res.status(401).json({
         status: 401,
         error: {
-          message: "Token is missing",
+          message: 'Token is missing',
         },
       });
     }
@@ -29,23 +27,21 @@ class Auth {
           return res.status(400).json({
             status: 400,
             error: {
-              message: "Invalid token",
+              message: 'Invalid token',
             },
           });
-        } else {
-          req.token = token;
-          req.user = user.rows[0];
-          next();
         }
+        req.token = token;
+        req.user = user.rows[0];
+        next();
       } catch (error) {
-        
         return res.status(500).json({
           status: 500,
-          error:error
+          error
         });
       }
     } catch (error) {
-      if (error.name && error.name === "TokenExpiredError") {
+      if (error.name && error.name === 'TokenExpiredError') {
         return res.status(401).json({
           status: 401,
           message: error.message,
@@ -57,5 +53,6 @@ class Auth {
       });
     }
   }
-}
-export default new Auth();
+};
+
+export default Auth;

@@ -1,4 +1,5 @@
-export const STATUSES={
+/* eslint-disable import/prefer-default-export */
+export const STATUSES = {
   CREATED: 201,
   OK: 200,
   BAD_REQUEST: 400,

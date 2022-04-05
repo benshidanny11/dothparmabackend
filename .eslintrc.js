@@ -1,17 +1,38 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true,
+  root: true,
+  extends: ['airbnb-base'],
+  env: {
+    node: true,
+    es6: true,
+    mocha: true
   },
-  'extends': [
-    'google',
-  ],
-  'parserOptions': {
-    'ecmaVersion': 13,
-    'sourceType': 'module',
+  rules: {
+    'one-var': 0,
+    'one-var-declaration-per-line': 0,
+    'new-cap': 0,
+    'consistent-return': 0,
+    'no-param-reassign': 0,
+    'comma-dangle': 0,
+    curly: ['error', 'multi-line'],
+    'import/no-unresolved': [2, { commonjs: true }],
+    'no-shadow': ['error', { allow: ['req', 'res', 'err'] }],
+    'valid-jsdoc': ['error', {
+      requireReturn: true,
+      requireReturnType: true,
+      requireParamDescription: false,
+      requireReturnDescription: true
+    }],
+    'jsx-a11y/anchor-is-valid': 'off',
+    'require-jsdoc': ['error', {
+      require: {
+        FunctionDeclaration: true,
+        MethodDefinition: true,
+        ClassDeclaration: true
+      }
+    }]
   },
-  'rules': {
-    'indent': ['error', 2],
-    'max-len': ['error', {'code': 120}],
-  },
+  parserOptions: {
+    sourceType: 'module',
+    allowImportExportEverywhere: true
+  }
 };

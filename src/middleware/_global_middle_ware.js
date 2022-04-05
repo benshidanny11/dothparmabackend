@@ -4,8 +4,8 @@ import morgan from 'morgan';
 
 export default (app) => {
   app
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: false }))
-  .use(cors())
-  .use(morgan('dev'));
-}
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: false }))
+    .use(cors())
+    .use(morgan('dev'));
+};

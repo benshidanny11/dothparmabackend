@@ -1,22 +1,23 @@
-import connection from "../connection";
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
+import connection from '../connection';
 import schemaConfig from './_config';
 
 const con = connection();
 export default {
   db: schemaConfig,
-  execute: (migrations, message) => {
-    Promise.all([migrations])
-    .then((result) => {
-      return result[0].map(({ query, name }, index) => {
-         return new Promise((reslove, reject) =>{
-          con.query(query).then((result) => {
-            console.log(`${name} ${message}`); 
-            reslove(result)
-          }).catch((error) =>{
-            reject(error)
-          })
-         })
-      })
-    })
+  execute: async (migrations, message) => {
+    await con.query(migrations[0].query);
+    await con.query(migrations[1].query);
+    await con.query(migrations[2].query);
+    await con.query(migrations[3].query);
+    await con.query(migrations[4].query);
+    await con.query(migrations[5].query);
+    await con.query(migrations[6].query);
+    await con.query(migrations[7].query);
+    await con.query(migrations[8].query);
+    migrations.forEach(({ name }) => {
+      console.log(`${name} ${message}`);
+    });
   }
-}
+};

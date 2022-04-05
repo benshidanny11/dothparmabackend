@@ -1,13 +1,12 @@
-/* eslint-disable linebreak-style */
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const { JWT_SECRET } = process.env;
 
 export const generateToken = async (payload) => {
-  const token = await jwt.sign(payload, JWT_SECRET, { expiresIn: "40d" });
+  const token = await jwt.sign(payload, JWT_SECRET, { expiresIn: '40d' });
   return token;
 };
 
